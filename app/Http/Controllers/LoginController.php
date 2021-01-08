@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserModel;
+use App\Models\UserModel;   
 use App\Services\Buisness\SecurityService;
 use App\Services\Utility\MyLogger1;
 use Illuminate\Http\Request;
@@ -30,11 +30,15 @@ class LoginController extends Controller
                 //Get the requested form data
                 $username = $request->input('username');
                 $password = $request->input('password');
+                $firstname = "null";
+                $lastname = "null";
+                $email = "null";
+                $roll = "user";
                 
                 Log::info("Paramaters: ", array("username" => $username, "password" => $password));
                 
                 // Save posted form data in User Object Model
-                $user = new UserModel(-1, $username, $password);
+                $user = new UserModel($username, $password, $firstname, $lastname, $roll, $email);
                 
                 $service = new SecurityService();
                 $status = $service->login($user);
@@ -58,44 +62,5 @@ class LoginController extends Controller
             
         
         }
-        /*
-         * Register method to process register controller
-         */
-        public function onRegister(Request $request)
-        {
-            MyLogger1::info("Entering RegisterController.ongRegister()");
-            try{
-                $this->validateForm($request);
-                // Grab form data
-                $username = $request->input('username');
-                $password = $request->input('password');
-                $email = $request->input('email');
-                $firstname = $request->input('firstname');
-                $lastname = $request->input('lastname');
-                $role = null;
-                
-                // Create a new User object
-                $user = new UserModel($firstname, $lastname, $username, $password, $email);
-                // Create a new security service object
-                $sc = new SecurityService();
-                
-                // Pass data into Security service object method.
-                $status = $sc->register($user);
-                
-                //Render a failed or success response view and pass the user Model
-                MyLogger1::info("Exiting RegisterController.onRegister()");
-                if($status)
-                {
-                    // return login view on success
-                    return view('login');
-                }
-                else
-                {
-                    // return register view on success
-                    return view('register');
-                }
-            } catch(ValidationException $e1){
-                throw $e1;
-            }
-        }
 }
+       
