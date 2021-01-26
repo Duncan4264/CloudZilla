@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\UserModel;   
 use App\Services\Buisness\SecurityService;
 use App\Services\Utility\MyLogger1;
+<<<<<<< HEAD
+=======
+use Illuminate\Contracts\Session\Session;
+>>>>>>> 3801b9847f0304e766343d8ae1de75d6e0cd3117
 use Illuminate\Http\Request;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Support\Facades\Log;
@@ -46,16 +50,33 @@ class LoginController extends Controller
                 //Render a failed or success response view and pass the user Model
                 if($status)
                 {
+<<<<<<< HEAD
                     Log::info("Exut Login4Controller.index(), Login Passed");
                     $data = ['model' => $user];
+=======
+                    MyLogger1::info("Exut Login4Controller.index(), Login Passed");
+                    $data = ['model' => $user];
+                    // Set session for each item being passed;
+                    session()->put('username', $status->getUsername());
+                    session()->put('email', $status->getEmail());
+                    session()->put('role', $status->getRole());
+                    session()->put('firstname', $status->getFirstname());
+                    session()->put('lastname', $status->getLastname());
+>>>>>>> 3801b9847f0304e766343d8ae1de75d6e0cd3117
                     return view('loginPassed')->with($data);
                 }
                 else
                 {
+<<<<<<< HEAD
                     Log::info("Exit Login4controller.index() Login Failed");
                     return view('loginFailed');
                 }
                 $user = new UserModel(-1, $username, $password);
+=======
+                    MyLogger1::info("Exit Login4controller.index() Login Failed");
+                    return view('loginFailed');
+                }
+>>>>>>> 3801b9847f0304e766343d8ae1de75d6e0cd3117
             } catch(ValidationException $e1){
                throw $e1;
             }

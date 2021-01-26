@@ -24,10 +24,19 @@ Route::get('/login', function () {
    return view('login');
   });
 
+<<<<<<< HEAD
+=======
+// Goes to the timecard view
+    Route::get('/timecard', function () {
+        return view('timecard');
+    });
+
+>>>>>>> 3801b9847f0304e766343d8ae1de75d6e0cd3117
 Route::get('/home', function () {
         return view('index');
     });
 
+<<<<<<< HEAD
 Route::post('/dologin', 'LoginController@index');
 
 Route::post('/register', function() {
@@ -46,4 +55,21 @@ Route::post('/doclockout', 'TimecardController@Clockout');
 Route::post('/doclockin', 'TimecardController@Clockin');
 
 
+=======
+// Do Login
+Route::post('/dologin', 'LoginController@index');
+
+// Register
+Route::post('/register', function() {
+   return view('register'); 
+});
+// Clock in
+Route::post('/doclockin', 'TimecardController@ClockIn');
+// Clock out
+Route::post('/doclockout', 'TimecardController@Clockout');
+
+// Routes to the Register controller after submitting register forum
+Route::post('/doregister', "RegisterController@onRegister");
+  
+>>>>>>> 3801b9847f0304e766343d8ae1de75d6e0cd3117
         
