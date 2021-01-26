@@ -59,17 +59,20 @@ class SecurityDAO
         try{
             $name = $user->getUsername();
             $pw = $user->getPassword();
-            $stmt = $this->db->prepare('SELECT ID, USERNAME, PASSWORD
+            $stmt = $this->db->prepare('SELECT USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, ROLE, EMAIL
                                        FROM USERS 
                                        WHERE USERNAME = :username AND PASSWORD = :password');
             $stmt->bindParam(':username', $name);
             $stmt->bindParam(':password', $pw);
             $stmt->execute();
             
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $user = new UserModel($row['USERNAME'], $row['PASSWORD'], $row['FIRST_NAME'], $row['LAST_NAME'], $row['ROLE'], $row['EMAIL']);
+            
             if($stmt->rowCount() == 1)
             {
                  MyLogger1::info("Exit SecurityDAO.findByUser() with true");
-                return true;
+                return $user;
             }
             else
             {

@@ -26,6 +26,7 @@ https://bootsnipp.com/snippets/ZkpRl
         <div class="collapse navbar-collapse" id="navbar-collapse-2">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="home">Home</a></li>
+            <li><a href="timecard">Timecard</a></li>
             <li><a href="register">Register</a></li>
             <li>
              <a class="btn btn-default btn-outline btn-circle" href="login"  data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">Sign in</a>

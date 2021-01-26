@@ -24,7 +24,7 @@ class SecurityService
         
         $db = null;
         
-        MyLogger1::info("Exit SecurityService.login() with " . $flag);
+        MyLogger1::info("Exit SecurityService.login()");
         
         return $flag;
         

@@ -34,6 +34,16 @@ Route::post('/register', function() {
    return view('register'); 
 });
 
-    // Routes to the Register controller after submitting register forum
-    Route::post('/doregister', "RegisterController@onRegister");
+Route::get('/timecard', function () {
+  return view('timecard');
+});
+
+// Routes to the Register controller after submitting register forum
+Route::post('/doregister', "RegisterController@onRegister");
+
+Route::post('/doclockout', 'TimecardController@Clockout');
+
+Route::post('/doclockin', 'TimecardController@Clockin');
+
+
         
