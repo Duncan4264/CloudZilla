@@ -24,14 +24,6 @@ Route::get('/login', function () {
    return view('login');
   });
 
-<<<<<<< HEAD
-=======
-// Goes to the timecard view
-    Route::get('/timecard', function () {
-        return view('timecard');
-    });
-
->>>>>>> 976797e90f66bbcfaeff8147fd9da795b9b44022
 Route::get('/home', function () {
         return view('index');
     });
@@ -50,7 +42,4 @@ Route::post('/doclockout', 'TimecardController@Clockout');
 Route::post('/doclockin', 'TimecardController@Clockin');
 
 
-<<<<<<< HEAD
         
-=======
->>>>>>> 976797e90f66bbcfaeff8147fd9da795b9b44022
