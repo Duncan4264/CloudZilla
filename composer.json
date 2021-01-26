@@ -5,11 +5,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-<<<<<<< HEAD
         "php": ">=7.0.0",
-=======
-        "php": "7.3.24",
->>>>>>> 3801b9847f0304e766343d8ae1de75d6e0cd3117
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0"
@@ -46,12 +42,7 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-<<<<<<< HEAD
             "@php artisan key:generate"
-=======
-         "php -r \"copy('.env.example', '.env');\"",
-        "php artisan key:generate"
->>>>>>> 3801b9847f0304e766343d8ae1de75d6e0cd3117
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
@@ -63,8 +54,4 @@
         "sort-packages": true,
         "optimize-autoloader": true
     }
-<<<<<<< HEAD
-=======
-    
->>>>>>> 3801b9847f0304e766343d8ae1de75d6e0cd3117
 }
