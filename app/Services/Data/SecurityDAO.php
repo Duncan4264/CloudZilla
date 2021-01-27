@@ -60,7 +60,7 @@ class SecurityDAO
             $name = $user->getUsername();
             $pw = $user->getPassword();
             $stmt = $this->db->prepare('SELECT USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, ROLE, EMAIL
-                                       FROM USERS 
+                                       FROM Users
                                        WHERE USERNAME = :username AND PASSWORD = :password');
             $stmt->bindParam(':username', $name);
             $stmt->bindParam(':password', $pw);
@@ -89,7 +89,7 @@ class SecurityDAO
         MyLogger1::info("Entering SecurityDAO.findByUserID");
         try{
             $stmt = $this->db->prepare('SELECT ID, USERNAME, PASSWORD
-                                       FROM USERS
+                                       FROM Users
                                        WHERE ID = :id');
             $stmt->bindParam(':id', $id);
             $stmt->execute();
@@ -116,7 +116,7 @@ class SecurityDAO
         MyLogger1::info("Entering SecurityDAO.findAllUsers");
         try{
             $stmt = $this->db->prepare('SELECT ID, USERNAME, PASSWORD
-                                       FROM USERS');
+                                       FROM Users');
             $stmt->execute();
             
             if($stmt->rowCount() == 0)

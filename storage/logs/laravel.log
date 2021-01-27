@@ -2395,3 +2395,41 @@
 )
   
 [2021-01-26 02:20:18] local.INFO: Exut Login4Controller.index(), Login Passed  
+[2021-01-27 01:08:50] local.INFO: Entering LoginController.index()  
+[2021-01-27 01:08:50] local.INFO: Paramaters:  {"username":"cyrus","password":"duncan"} 
+[2021-01-27 01:08:50] local.INFO: Entering Security Service.login() with data of Array
+(
+)
+  
+[2021-01-27 01:08:51] local.INFO: Entering SecurityDAO.findByUser with data of Array
+(
+)
+  
+[2021-01-27 01:08:51] local.INFO: Exit SecurityDAO.findByUser() with true with data of Array
+(
+)
+  
+[2021-01-27 01:08:51] local.INFO: Exit SecurityService.login() with data of Array
+(
+)
+  
+[2021-01-27 01:08:51] local.INFO: Exut Login4Controller.index(), Login Passed  
+[2021-01-27 01:08:56] local.INFO: Entering LoginController.index()  
+[2021-01-27 01:08:56] local.INFO: Paramaters:  {"username":"cyrusa","password":"duncan"} 
+[2021-01-27 01:08:56] local.INFO: Entering Security Service.login() with data of Array
+(
+)
+  
+[2021-01-27 01:08:57] local.INFO: Entering SecurityDAO.findByUser with data of Array
+(
+)
+  
+[2021-01-27 01:08:57] local.INFO: Exit SecurityDAO.findByUser() with false with data of Array
+(
+)
+  
+[2021-01-27 01:08:57] local.INFO: Exit SecurityService.login() with data of Array
+(
+)
+  
+[2021-01-27 01:08:57] local.INFO: Exit Login4controller.index() Login Failed  
