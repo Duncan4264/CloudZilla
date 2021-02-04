@@ -27,6 +27,9 @@ Route::get('/login', function () {
 Route::get('/home', function () {
         return view('index');
     });
+Route::get('/timecard', function () {
+      return view('timecard');
+    });
 
 Route::post('/dologin', 'LoginController@index');
 
