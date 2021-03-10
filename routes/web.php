@@ -27,12 +27,15 @@ Route::get('/login', function () {
 Route::get('/home', function () {
         return view('index');
     });
-
+Route::get('/timecard', function () {
+      return view('timecard');
+    });
 Route::post('/dologin', 'LoginController@index');
 
 Route::post('/register', function() {
    return view('register'); 
 });
+
 
 // Routes to the Register controller after submitting register forum
 Route::post('/doregister', "RegisterController@onRegister");

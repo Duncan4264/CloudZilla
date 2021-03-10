@@ -2,7 +2,7 @@
 namespace App\Services\Data;
 
 use App\Models\UserModel;
-use App\Services\Utility\MyLogger1;
+use App\Services\Utility\Log;
 
 class TimecardDAO
 {
@@ -15,7 +15,8 @@ class TimecardDAO
     public function ClockIn(UserModel $user)
     {
         
-        MyLogger1::info("Entering UserDAO.createUser()");
+        Log::info("Entering UserDAO.createUser()");
+        try {
         // Grab variables from the user model
         $username = $user->getUsername();
         $in = 'in';
@@ -27,6 +28,11 @@ class TimecardDAO
         $stmt->bindParam(':in', $in);
         
         $stmt->execute();
+        } catch(PDOException $e) {
+            Log::error("Exception: ", array("message" => $e->getMessage()));
+            throw new Exceiption($e);  
+        }
+        Log::info("Exiting UserDAO.createUser()");
         
         return true;
     }
@@ -34,7 +40,8 @@ class TimecardDAO
     public function Clockout(UserModel $user)
     {
         
-        MyLogger1::info("Entering UserDAO.createUser()");
+        Log::info("Entering UserDAO.createUser()");
+        try {
         // Grab variables from the user model
         $username = $user->getUsername();
         $in = 'out';
@@ -46,7 +53,14 @@ class TimecardDAO
         $stmt->bindParam(':in', $in);
         
         $stmt->execute();
-        
+        }
+        catch(PDOException $e)
+        {
+            Log::error("Exception: ", array("message" => $e->getMessage()));
+            throw new Exceiption($e);
+            
+        }
+        Log::info("Exiting UserDAO.createUser()");
         return true;
     }
 }

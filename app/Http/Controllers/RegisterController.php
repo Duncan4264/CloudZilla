@@ -15,7 +15,7 @@ class RegisterController extends Controller
      */
     public function onRegister(Request $request)
     {
-        MyLogger1::info("Entering RegisterController.ongRegister()");
+        Log::info("Entering RegisterController.ongRegister()");
         try{    
             // Grab form data
             $username = $request->input('username');
@@ -34,7 +34,7 @@ class RegisterController extends Controller
             $status = $sc->register($user);
             
             //Render a failed or success response view and pass the user Model
-            MyLogger1::info("Exiting RegisterController.onRegister()");
+            Log::info("Exiting RegisterController.onRegister()");
             if($status)
             {
                 // return login view on success
@@ -46,6 +46,7 @@ class RegisterController extends Controller
                 return view('register');
             }
         } catch(ValidationException $e1){
+            Log::error("Exception: ", array("message" => $e->getMessage()));
             throw $e1;
         }
     }

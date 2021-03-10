@@ -57,6 +57,7 @@ class LoginController extends Controller
                 }
                 $user = new UserModel(-1, $username, $password);
             } catch(ValidationException $e1){
+                Log::error("Exception: ", array("message" => $e->getMessage()));
                throw $e1;
             }
             

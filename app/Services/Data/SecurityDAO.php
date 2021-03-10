@@ -4,7 +4,6 @@ namespace App\Services\Data;
 use App\Models\UserModel;
 use PDO;
 use PDOException;
-use App\Services\Utility\MyLogger1;
 
 class SecurityDAO
 {
@@ -20,7 +19,8 @@ class SecurityDAO
      */
     public function createUser(UserModel $user)
     {
-        MyLogger1::info("Entering UserDAO.createUser()");
+        Log::info("Entering UserDAO.createUser()");
+        try {
         // Grab variables from the user model
         $username = $user->getUsername();
         $password = $user->getPassword();
@@ -45,7 +45,11 @@ class SecurityDAO
         $stmt->execute();
         
         
-        MyLogger1::info("Exiting UserDAO.createUser()");
+        Log::info("Exiting UserDAO.createUser()");
+        } catch (PDOException $e) {
+            Log::error("Exception: ", array("message" => $e->getMessage()));
+            throw new Exception($e);
+        }
         return true;
         
         
@@ -55,7 +59,7 @@ class SecurityDAO
      */
     public function findByUser(UserModel $user)
     {
-        MyLogger1::info("Entering SecurityDAO.findByUser");
+        Log::info("Entering SecurityDAO.findByUser");
         try{
             $name = $user->getUsername();
             $pw = $user->getPassword();
@@ -71,22 +75,23 @@ class SecurityDAO
             
             if($stmt->rowCount() == 1)
             {
-                 MyLogger1::info("Exit SecurityDAO.findByUser() with true");
+                 Log::info("Exit SecurityDAO.findByUser() with true");
                 return $user;
             }
             else
             {
-              MyLogger1::info("Exit SecurityDAO.findByUser() with false");
+              Log::info("Exit SecurityDAO.findByUser() with false");
               return false;
             }
             } catch(PDOException $e){
-            MyLogger1::error("Exception: ", array("message" => $e->getMessage()));
+            Log::error("Exception: ", array("message" => $e->getMessage()));
+            throw new Exception($e);
 //             throw new DatabaseException($message) . "Database eception: " . $e->getMessage()  0 , $e);
         }
     }
     public function findByUserID($id)
     {
-        MyLogger1::info("Entering SecurityDAO.findByUserID");
+        Log::info("Entering SecurityDAO.findByUserID");
         try{
             $stmt = $this->db->prepare('SELECT ID, USERNAME, PASSWORD
                                        FROM Users
@@ -96,24 +101,25 @@ class SecurityDAO
             
             if($stmt->rowCount() == 0)
             {
-                MyLogger1::info("Exit SecurityDAO.findByUserID() with false");
+                Log::info("Exit SecurityDAO.findByUserID() with false");
                 return null;
             }
             else
             {
-                MyLogger1::info("Excit SecurityDAO.findByUserID() with true");
+                Log::info("Exit SecurityDAO.findByUserID() with true");
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 $user = new UserModel($row['ID'], $row['USERNAME'], $row['PASSWORD']);
                 return $user;
             }
         } catch(PDOException $e){
-            MyLogger1::error("Exception: ", array("message" => $e->getMessage()));
+            Log::error("Exception: ", array("message" => $e->getMessage()));
+            throw new Exception($e);
            //throw new DatabaseException($message) . "Database eception: " . $e->getMessage()  0 , $e);
         }
     }
     public function findAllUsers()
     {
-        MyLogger1::info("Entering SecurityDAO.findAllUsers");
+        Log::info("Entering SecurityDAO.findAllUsers");
         try{
             $stmt = $this->db->prepare('SELECT ID, USERNAME, PASSWORD
                                        FROM Users');
@@ -121,14 +127,14 @@ class SecurityDAO
             
             if($stmt->rowCount() == 0)
             {
-                MyLogger1::info("Exit SecurityDAO.findAllUsers() with false");
+                Log::info("Exit SecurityDAO.findAllUsers() with false");
                 return array();
             }
             else
             {
                 $index = 0;
                 $users = array();
-                MyLogger1::info("Excit SecurityDAO.findAllUsers() with true");
+                Log::info("Exiting SecurityDAO.findAllUsers() with true");
                 while($row = $stmt->fetch(PDO::FETCH_ASSOC))
                 {
                     $user = new UserModel($row['ID'], $row['USERNAME'], $row['PASSWORD']);
@@ -137,8 +143,8 @@ class SecurityDAO
                 return $users;
             }
         } catch(PDOException $e){
-            MyLogger1::error("Exception: ", array("message" => $e->getMessage()));
-            //throw new DatabaseException($message) . "Database eception: " . $e->getMessage()  0 , $e);
+            Log::error("Exception: ", array("message" => $e->getMessage()));
+           throw new Exception($e);
         }
     }
 }

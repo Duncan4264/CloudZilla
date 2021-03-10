@@ -11,7 +11,7 @@ class TimecardService
     
     public function ClockIn(UserModel $user)
     {
-        MyLogger1::info("Entering TimeCardService.ClockIn()");
+        Log::info("Entering TimeCardService.ClockIn()");
         $servername = config("database.connections.mysql.host");
         $port = config("database.connections.mysql.port");
         $username = config("database.connections.mysql.username");
@@ -34,7 +34,7 @@ class TimecardService
     
     public function Clockout(UserModel $user)
     {
-        MyLogger1::info("Entering TimeCardService.ClockIn()");
+        Log::info("Entering TimeCardService.ClockIn()");
         $servername = config("database.connections.mysql.host");
         $port = config("database.connections.mysql.port");
         $username = config("database.connections.mysql.username");
@@ -49,7 +49,7 @@ class TimecardService
         
         $db = null;
         
-        MyLogger1::info("Exit SecurityService.login() with " . $flag);
+        Log::info("Exit SecurityService.login() with " . $flag);
         
         return $flag;
         

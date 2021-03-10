@@ -8,12 +8,11 @@ use Illuminate\Http\Request;
 use Exception;
 use App\Services\Buisness\TimecardService;
 use App\Models\UserModel;
-use App\Services\Utility\MyLogger1;
 
 class TimecardController extends Controller
 {
     public function ClockIn(Request $request) {
-        MyLogger1::info("Entering ClockInController.ClockIn()");
+        Log::info("Entering ClockInController.ClockIn()");
         try {
             $username = session()->get('username');
             $service = new TimecardService();
@@ -27,12 +26,12 @@ class TimecardController extends Controller
             $status = $service->ClockIn($user);
             if($status)
             {
-                MyLogger1::info("Exit ClockutController.Clockout() Clockedin passed");
+                Log::info("Exit ClockutController.Clockout() Clockedin passed");
                 return view('clockedin');
             }
             else
             {
-                MyLogger1::info("Exit ClockinController.Clockout() Clockedin failed");
+                Log::info("Exit ClockinController.Clockout() Clockedin failed");
                 return view('home');
             }
             
@@ -40,12 +39,13 @@ class TimecardController extends Controller
             
             
         } Catch(Exception $e) {
+            Log::error("Exception: ", array("message" => $e->getMessage()));
             throw $e;
         }
     }
     
     public function ClockOut(Request $request) {
-        MyLogger1::info("Entering ClockInController.ClockIn()");
+        Log::info("Entering ClockInController.ClockIn()");
         try {
             $username = session()->get('username');
             $service = new TimecardService();
@@ -59,12 +59,12 @@ class TimecardController extends Controller
             $status = $service->Clockout($user);
             if($status)
             {
-                MyLogger1::info("Exit ClockoutController.Clockout() Clockout passed");
+                Log::info("Exit ClockoutController.Clockout() Clockout passed");
                 return view('clockedout');
             }
             else
             {
-                MyLogger1::info("Exit ClockoutController.Clockout() Clockedout failed");
+                Log::info("Exit ClockoutController.Clockout() Clockedout failed");
                 return view('home');
             }
             
@@ -72,6 +72,7 @@ class TimecardController extends Controller
             
             
         } Catch(Exception $e) {
+            Log::error("Exception: ", array("message" => $e->getMessage()));
             throw $e;
         }
     }

@@ -9,7 +9,8 @@ class SecurityService
 {
     public function login(UserModel $user)
     {
-        MyLogger1::info("Entering Security Service.login()");
+        Log::info("Entering Security Service.login()");
+        try{
         $servername = config("database.connections.mysql.host");
         $port = config("database.connections.mysql.port");
         $username = config("database.connections.mysql.username");
@@ -24,14 +25,21 @@ class SecurityService
         
         $db = null;
         
-        MyLogger1::info("Exit SecurityService.login()");
+        Log::info("Exit SecurityService.login()");
         
         return $flag;
+        } catch(Exception $e)
+        {
+            throw New Exception($e);
+        }
         
     }
     public function getUser($id)
     {
-        MyLogger1::info("Entering SecurityService.getUser()");
+        Log::info("Entering SecurityService.getUser()");
+        try{
+
+        
         $servername = config("database.connections.mysql.host");
         $port = config("database.connections.mysql.port");
         $username = config("database.connections.mysql.username");
@@ -46,16 +54,23 @@ class SecurityService
         
         $db = null;
         
-//         MyLogger1::info("Exit SecurityService.getUser() with " . $flag);
+        Log::info("Exit SecurityService.getUser() with " . $flag);
         
         return $flag;
+        } catch(Exception $e)
+        {
+            throw new Exception($e);
+        }
     }
     /*
      * Buisness Logic to register a user
      */
     public function register(UserModel $user)
     {
-        MyLogger1::info("Entering UserService.register()");
+        Log::info("Entering UserService.register()");
+        try{
+            
+        
         // Call the database config variables
         $servername = config("database.connections.mysql.host");
         $port = config("database.connections.mysql.port");
@@ -71,14 +86,19 @@ class SecurityService
         $flag = $service->createUser($user);
         // Close database connection
         $db = null;
-        MyLogger1::info("Extiing UserService.register()");
+        Log::info("Extiing UserService.register()");
         // Return data from Data Access Object
         return $flag;
+        } catch (Exception $e)
+        {
+            throw new Exception($e);
+        }
     }
     
     public function getAllUsers()
     {
-        MyLogger1::info("Entering Security Service.getAllUsers()");
+        Log::info("Entering Security Service.getAllUsers()");
+        try {
         $servername = config("database.connections.mysql.host");
         $port = config("database.connections.mysql.port");
         $username = config("database.connections.mysql.username");
@@ -93,9 +113,14 @@ class SecurityService
         
         $db = null;
         
-        MyLogger1::info("Exit SecurityService.getAllUsers() with " , $flag);
+        
+        Log::info("Exit SecurityService.getAllUsers() with " , $flag);
         
         return $flag;
+        } catch(PDOEXCEIPTON $e)
+        {
+            throw new Exception($e);
+        }
     }
 }
 
