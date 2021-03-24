@@ -26,6 +26,7 @@ class LoginController extends Controller
            
             try
             {
+                // Validate the request
                 $this->validateForm($request);
                 //Get the requested form data
                 $username = $request->input('username');
