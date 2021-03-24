@@ -11,6 +11,7 @@ class SecurityService
     {
         Log::info("Entering Security Service.login()");
         try{
+            // Call database configuration strings from the .env
         $servername = config("database.connections.mysql.host");
         $port = config("database.connections.mysql.port");
         $username = config("database.connections.mysql.username");
