@@ -3,6 +3,7 @@ namespace App\Services\Data;
 
 use App\Models\UserModel;
 use App\Services\Utility\Log;
+use Illuminate\Support\Facades\Log;
 
 class TimecardDAO
 {
