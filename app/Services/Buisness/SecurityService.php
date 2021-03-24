@@ -4,6 +4,7 @@ use App\Models\UserModel;
 use App\Services\Data\SecurityDAO;
 use \PDO;
 use App\Services\Utility\MyLogger1;
+use Illuminate\Support\Facades\Log;
 
 class SecurityService
 {
