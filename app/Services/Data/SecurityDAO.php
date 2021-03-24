@@ -3,6 +3,9 @@ namespace App\Services\Data;
 
 use App\Models\UserModel;
 use PDO;
+
+use Illuminate\Support\Facades\Log;
+
 use PDOException;
 
 class SecurityDAO
