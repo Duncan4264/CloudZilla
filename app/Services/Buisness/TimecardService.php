@@ -4,6 +4,9 @@ namespace App\Services\Buisness;
 use App\Models\UserModel;
 use App\Services\Utility\MyLogger1;
 use App\Services\Data\TimecardDAO;
+
+use Illuminate\Support\Facades\Log;
+
 use PDO;
 
 class TimecardService
