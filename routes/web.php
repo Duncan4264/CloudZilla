@@ -30,10 +30,7 @@ Route::get('/home', function () {
 Route::get('/timecard', function () {
       return view('timecard');
     });
-<<<<<<< HEAD
-=======
 
->>>>>>> b82cda31a398f301423cd7996644b77c41e60778
 Route::post('/dologin', 'LoginController@index');
 
 Route::post('/register', function() {
