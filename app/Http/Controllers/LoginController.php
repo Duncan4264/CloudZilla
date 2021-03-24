@@ -57,7 +57,9 @@ class LoginController extends Controller
                     return view('loginFailed');
                 }
                 $user = new UserModel(-1, $username, $password);
+                // Catch an error
             } catch(ValidationException $e1){
+                // Thre a new Error exception
                 Log::error("Exception: ", array("message" => $e->getMessage()));
                throw $e1;
             }
